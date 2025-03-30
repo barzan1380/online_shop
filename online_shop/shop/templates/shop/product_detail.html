@@ -1,0 +1,8 @@
+<h2>{{product.name}}</h2>
+            <p>{{product.category.name}}:دسته بندی</p>
+            <p>{{product.inventory}}:موجودی</p>
+            <ul>
+                {% for f in product.features.all %}
+                    <li>{{ f.name }}: {{f.value }}</li>
+                {% endfor %}
+            </ul>

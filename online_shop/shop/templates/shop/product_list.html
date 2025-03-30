@@ -1,0 +1,22 @@
+
+<h2>{%if selected_category%} محصولات دسته{{selected_category.name}}{%else%}همه محصولات{%endif%}
+</h2>
+{% for product in products%}
+    <div>
+        <h3><a href="{{ product.get_absolute_url }}">{{product.name}}</a></h3>
+        <p>قیمت:{{product.get_final_price}}</p>
+        <p>دسته بندی:{{product.category.name}}</p>
+    </div>
+    {%empty%}
+        <p>محصولی یافت نشد</p>
+{%endfor%}
+#صفحه بندی
+{% if products.has_other_pages %}
+    {% if products.has_previous %}
+        <a href="?page={{products.previous_page_number}}">صفحه قبل</a>
+    {% endif %}
+    <span> صفحه {{products.number}}از{{products.paginator.num_pages}}</spanصفحه>
+    {% if products.has_next %}
+        <a href="?page={{products.next_page_number}}">صفحه بعد</a>
+    {% endif %}
+{% endif %}
