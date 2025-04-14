@@ -1,0 +1,7 @@
+<div id="cart-icon">
+  <a href="{% url 'cart:cart_detail' %}">
+    🛒{{ cart|length }}
+  </a>
+</div>
+{% block content %}
+{% endblock %}

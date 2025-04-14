@@ -1,8 +1,22 @@
+{% extends 'parent/base.html' %}
+
+{% block content %}
+
+
+
 <h2>{{product.name}}</h2>
             <p>{{product.category.name}}:دسته بندی</p>
             <p>{{product.inventory}}:موجودی</p>
+            <p>{{product.price}}:قیمت</p>
+            <p>{{product.get_final_price}}:قیمت پس از تخفیف</p>
             <ul>
                 {% for f in product.features.all %}
                     <li>{{ f.name }}: {{f.value }}</li>
                 {% endfor %}
             </ul>
+<form action="{% url 'cart:add_to_cart' product.id%}" method="post">
+    {% csrf_token %}
+    <button type="submit">افزودن به سبد خرید</button>
+
+</form>
+{% endblock %}

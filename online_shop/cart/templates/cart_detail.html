@@ -1,0 +1,20 @@
+{%for item in cart%}
+<p>نام محصول:{{item.product.name}}</p>
+
+<p>قیمت:{{item.product.price}}</p>
+<p>قیمت پس از تخفیف:{{item.price}}</p>
+<p>{{item.quantity}}:تعداد</p>
+<p>{{item.product.weight}}:وزن محصول</p>
+<p>قیمت کل:{{item.total}}</p>
+<a href="{% url 'cart:add_to_cart' item.product.pk %}">+</a><br>
+<a href="{% url 'cart:decrease_from_cart' item.product.pk %}">-</a><br>
+<a href="{% url 'cart:remove' item.product.pk %}">حذف محصول از سبد خرید</a><br>
+<hr>
+
+
+
+{%endfor%}
+<p>{{cart.get_total_price}}:مجموع قیمت</p>
+<a href="{% url 'cart:cart_remove' %}">حذف سبد خرید</a><br>
+<a href="">ادامه پرداخت</a><br>
+<a href="{% url 'shop:products_list' %}">بازگشت به لیست محصولات</a>
