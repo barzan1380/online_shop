@@ -16,5 +16,5 @@
 {%endfor%}
 <p>{{cart.get_total_price}}:مجموع قیمت</p>
 <a href="{% url 'cart:cart_remove' %}">حذف سبد خرید</a><br>
-<a href="">ادامه پرداخت</a><br>
+<a href="{% url 'order:verify_phone' %}">ادامه پرداخت</a><br>
 <a href="{% url 'shop:products_list' %}">بازگشت به لیست محصولات</a>

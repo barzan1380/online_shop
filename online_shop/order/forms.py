@@ -8,3 +8,7 @@ class OrderForm(forms.ModelForm):
         fields = [
             'full_name', 'phone', 'address', 'postal_code'
         ]
+
+
+class PhoneVerificationForm(forms.Form):
+    phone = forms.CharField(max_length=11)

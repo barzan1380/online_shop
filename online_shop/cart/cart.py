@@ -13,7 +13,7 @@ class Cart:
     def add(self, product):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {"quantity": 1, 'price': product.get_final_price(), }
+            self.cart[product_id] = {"quantity": 1}
         else:
             if self.cart[product_id]['quantity'] < product.inventory:
                 self.cart[product_id]['quantity'] += 1
@@ -45,13 +45,16 @@ class Cart:
     def __iter__(self):
         product_ids = self.cart.keys()
         products = Product.objects.filter(id__in=product_ids)
+
         cart_dict = self.cart.copy()
+
         for product in products:
             cart_dict[str(product.pk)]['product'] = product
-
         for item in cart_dict.values():
+            item['price'] = int(item['product'].get_final_price())
             item['total'] = item['price'] * item['quantity']
             yield item
+
 
     def save(self):
         self.session.modified = True
